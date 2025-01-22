@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Arial', sans-serif;
+background-image: linear-gradient(135deg, #3B2667 10%, #BC78EC 100%);}
+
+        .container {
+            width: 50%;
+            max-width: 400px;
+            color:#b224ef;
+            font-weight:bold;
+            font-size: 1rem;
+background-image: linear-gradient(135deg, #E8DBFC 10%, #F8F9D2 100%);
+padding: 20px;
+            border-radius: 6px;
+            position:relative;
+            padding-bottom:20px;
+        }
+
+
+        input[type=text] {
+          width: 100%;
+          padding: 12px 40px 12px 12px;
+          margin: 8px 0;
+          display: inline-block;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+          opacity:0.7;
+          transition: all 0.5s ease;
+        }
+
+        input[type=text]:hover, input[type=password]:hover{
+         opacity:1;
+        }
+
+        input[type=password]{
+          width:100%;
+          padding:12px 40px 12px 12px;
+          margin:8px 0;
+          display: inline-block;
+          box-sizing: border-box;
+          border: 1px solid #ccc;
+          border-radius:4px;
+          opacity:0.7;
+          transition:all 0.5s ease;
+        }
+
+         .fa-eye {
+            position:absolute;
+            top:44%;
+            right:35px;
+            transform: translateY(-50%);
+            cursor:pointer;
+            color:#888;
+        }
+
+        .fa-eye:hover{
+         color:#000;
+        }
+
+        #submit{
+          width: 100%;
+          background-color: white;
+          color:#b224ef;
+          font-size:1rem;
+          font-weight: bold;
+          padding: 14px 20px;
+          margin: 8px 0;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+        }
+
+        #submit:hover {
+         background-image: linear-gradient(135deg, #071952 10%, #088395 100%);
+         }
+
+        div {
+          border-radius: 5px;
+          background-color: #f2f2f2;
+          padding: 20px;
+        }
+
+         #errorMessage {
+            opacity: 1;
+            transition: opacity 1s ease-out;
+            font-family:sans-serif;
+            color:#6b0f1a;
+            margin-left:140px;
+            display:inline-block;
+            }
+
+   .signup-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 0px;
+    margin-bottom:0px;
+    background:0px;
+    padding:0;
+    margin:0;
+    }
+
+  .signup-text {
+    margin: 0;
+    margin-right: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    padding-bottom:0px;
+    }
+
+   .signup-form {
+      margin: 0;
+      padding-bottom:0px;
+      }
+
+   #btn-signUp {
+    background: none;
+    border: none;
+    font-size: 1rem;
+    color: blue;
+    text-decoration: none;
+    cursor: pointer;
+    padding: 0;
+    margin:0;
+    padding-bottom:0px;
+    padding-top:20px;
+    }
+
+    .signUpClass{
+      color:black;
+      font-weight:normal;
+      margin:0;
+      padding-bottom:0px;
+      padding-top:20px;
+    }
+
+    </style>
+
+</head>
+<body>
+
+<div class="container">
+
+    <p th:text="${errorMessage}" id="errorMessage"></p>
+
+    <script>
+        setTimeout(() => {
+            document.getElementById("errorMessage").style.opacity = 0;
+        }, 1000);
+    </script>
+
+    <form action="processform" modelAttribute="processform"  method="post" autocomplete="off">
+
+        <label for="login" id="lblogin">Login </label>
+        <input id="login" type="text" required name="username" placeholder="Username" autocomplete="off"/><br><br>
+
+        <label for="password" >Password </label>
+        <input id="password" type="password" required  name="password" placeholder="Password" autocomplete="off"/><br><br>
+        <i class="fa-solid fa-eye" id="eye"></i>
+
+        <script>
+
+            document.addEventListener("DOMContentLoaded", function(){
+               const passwordInput = document.querySelector("#password");
+               const eye = document.querySelector("#eye");
+
+               eye.addEventListener("click", function(){
+               this.classList.toggle("fa-eye-slash");
+               const type = passwordInput.getAttribute("type")=="password" ? "text" : "password";
+               passwordInput.setAttribute("type", type);
+               });
+            });
+
+        </script>
+
+        <input type="submit" value="Login" id="submit"/>
+    </form>
+
+    <div class="signup-container">
+        <p class="signUpClass">Don't have an account? &nbsp;&nbsp; </p>
+        <form class="formSignUp" th:action="@{/registration}" method="get">
+            <input type="submit" id="btn-signUp" value="Sign Up">
+        </form>
+    </div>
+
+</div>
+
+</body>
+</html>
