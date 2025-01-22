@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+
+        body{
+    background-image: linear-gradient(135deg, #243949 10%, #517fa4 100%);
+    }
+
+     .navBar{
+        width:100%;
+        background: rgba(0, 0, 0, 0.7);
+        display:flex;
+        right:0;
+        top:0;
+        left:0;
+        justify-content:center;
+        font-weight:bold;
+        font-family: Arial, sans-serif;
+        font-size:1.2rem;
+        z-index:10;
+        position:fixed;
+        padding: 1rem 2rem;
+       }
+
+       .navBar a{
+         font-size: 1.2rem;
+         text-decoration:none;
+         margin: 0rem 7rem;
+         color:white;
+         transition: color 0.3s;
+       }
+
+       .navBar a:hover{
+         color: #00bcd4;
+       }
+
+       .AboutProject{
+         margin-left:14%;
+         margin-top:1%;
+         font-family:sans-serif;
+         color:#fddb92;
+         font-size:1.2rem;
+       }
+
+       h1, h2, h6{
+       color:white;
+       }
+
+       #Para{
+        display:flex;
+        widht:50px;
+       }
+
+              .logout{
+        width:100%;
+        display:flex;
+        justify-content:right;
+        align-items:center;
+      }
+
+      .logoutInput{
+        margin-top:8%;
+        margin-right:4%;
+        border:none;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.9);
+        border-radius:6px;
+        padding:10px 40px;
+        font-family:sans-serif;
+        font-weight:bold;
+background-image: linear-gradient(135deg, #ffcf71 10%, #ffcf71 100%);
+        color:#071952;
+        font-size:0.8rem;
+        transition:0.2s;
+        opacity:0.6;
+      }
+
+      .logoutInput:hover{
+       font-size:1rem;
+       padding:10px 20px;
+       cursor:pointer;
+       opacity:1;
+      }
+
+    </style>
+
+</head>
+<body>
+
+<div class="navBar">
+
+    <a th:href="@{/home}" id="home">Home</a>
+    <a th:href="@{/profileController}" id="profile">Profile</a>
+    <a th:href="@{/aboutController}" id="about">About Us</a>
+    <a th:href="@{/getAllUserData}" id="getAllUser" th:if="${loggedInUser!=null and loggedInUser.role == 'admin'}" >Dashboard</a>
+
+</div>
+
+<form class="logout" action="/logoutController" method="get">
+    <input class="logoutInput" type="submit" value="Logout"/>
+</form>
+
+
+<div class="AboutProject">
+
+    <p id="Para">
+    <h2>ABOUT US</h2>
+    Welcome to **User Management System**, a personal project created with the goal of solving real-world problems through technology.<br>This is a space where ideas meet functionality, and the focus is on building something simple, useful, and impactful.<br><br><br>
+
+    <h2>WHAT WE DO</h2>
+    **User Management System** was created to provide an efficient way to manage users, their roles, and access levels.<br>It’s built with user-friendliness, efficiency, and reliability at its core to ensure seamless data management and enhanced productivity.
+    <br><br><br>
+
+    <h2>WHY I STARTED THIS</h2>
+    I noticed that many tools for user management were either too complex or didn’t address the need for simplicity and scalability.<br>So, I decided to take a step and create something that could make a small difference for people like me or you!
+    <br><br><br>
+
+    <h2>MY VISION</h2>
+    This is more than just a project for me it’s a way to learn, grow, and contribute something valuable.<br>My dream is to see **User Management System** grow into a tool that people can trust and enjoy using for their user data management needs.
+    <br><br><br>
+
+    <br><br>
+
+    <h6>Thanks for checking it out! Your feedback means a lot and will help shape the future of this project.<h6>
+
+        </p>
+
+</div>
+
+</body>
+</html>
